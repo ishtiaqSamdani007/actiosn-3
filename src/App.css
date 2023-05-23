@@ -1,0 +1,24 @@
+*,*::after,*::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+}
+.counter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:1rem;
+}
+
+.counter > button{
+  height: 2.5rem;
+  aspect-ratio: 1/1;
+}
+
