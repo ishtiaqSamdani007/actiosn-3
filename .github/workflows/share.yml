@@ -16,13 +16,12 @@ jobs:
         run: echo Hello, world!
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Add other actions to build" > log.txt
       - name: Share log file
         uses: actions/upload-artifact@v2
         with:
-          name: log
-          path: log.txt
+            name: log
+            path: log.txt
 
   test:
     runs-on: ubuntu-latest
@@ -35,10 +34,6 @@ jobs:
         with:
           name: log
       - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        run: cat log.txt
 
 
