@@ -13,7 +13,7 @@ jobs:
           uses: peter-evans/create-or-update-comment@v3
           with:
 
-            issue-number: 1
+            issue-number: ${{ github.event.issue.number }}
             body: |
              issued by: ${{ github.actor }}
             reactions: '+1'
