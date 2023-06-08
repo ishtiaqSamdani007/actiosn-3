@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
         # cacahe node_modules to speed up build
-
+        
       - name: Cache node_modules
         uses: actions/cache@v2
         with:
@@ -31,8 +31,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Build
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+        
+      - name: Build application
         run: npm run build
 
-      - name: Test
+      - name: Run tests
         run: npm run test
