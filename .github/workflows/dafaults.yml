@@ -1,0 +1,17 @@
+name: using defaults
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: src
+    steps:
+        - name: print App.css
+          run: cat App.css
