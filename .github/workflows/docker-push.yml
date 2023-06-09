@@ -54,5 +54,5 @@ jobs:
           script: |
             ls -la
             pwd
-            sudo docker pull $DOCKERHUB_USERNAME/react-app-action:latest
+            sudo docker pull ishtiaqsamdani/react-app-action:latest
         
