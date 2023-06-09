@@ -1,6 +1,6 @@
 FROM nginx:1.21-alpine
 
-COPY /react-app/build /usr/share/nginx/html
+COPY build /usr/share/nginx/html
 
 EXPOSE 80
 
