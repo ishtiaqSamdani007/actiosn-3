@@ -39,7 +39,7 @@ jobs:
 
       - name: run tests
         run: npm run test
-        
+
       - name: Build and push Docker image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -58,5 +58,5 @@ jobs:
           script: |
             ls -la
             pwd
-            sudo docker pull ishtiaqsamdani/react-app-action:latest
+            docker pull ishtiaqsamdani/react-app-action:latest
         
