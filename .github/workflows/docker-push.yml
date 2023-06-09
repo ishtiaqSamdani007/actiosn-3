@@ -45,4 +45,15 @@ jobs:
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
           docker push $DOCKERHUB_USERNAME/react-app-action:latest
 
-      
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_PUBLIC_IP}}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          script: |
+            docker pull $DOCKERHUB_USERNAME/react-app-action:latest
+
+        # q : what is host, username, key, port? where can i get these?
+        # a : host is ec2 public ip, username is ec2 username, key is ec2 key, port is ec2 port
+        
