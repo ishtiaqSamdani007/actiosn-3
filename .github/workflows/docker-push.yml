@@ -32,6 +32,10 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: run ls
+        run: | 
+          ls -la
+          pwd 
       - name: Build and push Docker image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
