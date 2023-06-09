@@ -15,22 +15,7 @@ jobs:
 
             issue-number: ${{ github.event.issue.number }}
             body: |
-             issued by: ${{ github.actor }}
+              issued by: ${{ github.actor }}
             reactions: '+1'
-  comment:
-    runs-on: ubuntu-latest
-    steps:
       
-      - name: Create comment with API
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORGANIZATION: ${{ github.event.organization.login }}
-          REPOSITORY: ${{ github.event.repository.name }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-        run: |
-          gh api -X POST \
-          https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-          -f body='
-          Comment but from the API
-          '
         
