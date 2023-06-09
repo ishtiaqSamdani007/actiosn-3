@@ -52,7 +52,8 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
-            docker pull $DOCKERHUB_USERNAME/react-app-action:latest
+            ls -la
+            pwd
 
         # q : what is host, username, key, port? where can i get these?
         # a : host is ec2 public ip, username is ec2 username, key is ec2 key, port is ec2 port
