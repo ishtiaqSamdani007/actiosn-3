@@ -40,9 +40,9 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t $DOCKERHUB_USERNAME/react-app-action:latest -f push.Dockerfile .
+          docker build -t $DOCKERHUB_USERNAME/counter-app-action:latest -f push.Dockerfile .
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-          docker push $DOCKERHUB_USERNAME/react-app-action:latest
+          docker push $DOCKERHUB_USERNAME/counter-app-action:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
@@ -51,11 +51,11 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
-            docker stop react-app-action || true
-            docker rm react-app-action || true
-            docker rmi ishtiaqsamdani/react-app-action:latest || true
-            docker pull ishtiaqsamdani/react-app-action:latest
-            docker run -d --name react-app-action -p 81:80 ishtiaqsamdani/react-app-action:latest
+            docker stop counter-app-action || true
+            docker rm counter-app-action || true
+            docker rmi ishtiaqsamdani/counter-app-action:latest || true
+            docker pull ishtiaqsamdani/counter-app-action:latest
+            docker run -d --name counter-app-action -p 81:80 ishtiaqsamdani/counter-app-action:latest
 
 
             
