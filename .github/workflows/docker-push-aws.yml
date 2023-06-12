@@ -35,7 +35,7 @@ jobs:
       - name: run tests
         run: npm run test
 
-      - name: Build and push Docker image to private repository
+      - name: Build and push Docker image
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
@@ -55,3 +55,4 @@ jobs:
             docker rm react-app || true
             docker rmi ishtiaqsamdani/react-app-action:latest || true
             docker pull ishtiaqsamdani/react-app-action:latest
+            docker run -d --name react-app -p 80:80 ishtiaqsamdani/react-app-action:latest
