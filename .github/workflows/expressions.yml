@@ -1,9 +1,9 @@
 name: using expressions and env variables
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 env:
     MY_NAME: "John Doe"

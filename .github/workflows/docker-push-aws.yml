@@ -35,14 +35,14 @@ jobs:
       - name: run tests
         run: npm run test
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image to private repository
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t $DOCKERHUB_USERNAME/react-app-action:latest -f push.Dockerfile .
+          docker build -t ishtiaqsamdani/react-app-action:latest .
           docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-          docker push $DOCKERHUB_USERNAME/react-app-action:latest
+          docker push ishtiaqsamdani/react-app-action:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
@@ -51,8 +51,7 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
+            docker stop react-app || true
+            docker rm react-app || true
+            docker rmi ishtiaqsamdani/react-app-action:latest || true
             docker pull ishtiaqsamdani/react-app-action:latest
-
-
-            
-        
